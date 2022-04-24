@@ -100,7 +100,13 @@ export default {
       formData.append('company', this.company);
       formData.append('application_name', this.application_name);
       formData.append('message', this.message);
-      this.$store.dispatch('user/sendApplication', formData);
+
+      this.$store.dispatch('user/sendApplication', formData).then(() => {
+        this.$store.dispatch('notification/createNotification', {
+          text: 'Application created',
+          error: false
+        })
+      });
     }
   }
 }
