@@ -4,6 +4,7 @@
 ```
 npm install
 ```
+<p>Set API Server in .env file</p>
 
 ### Compiles and hot-reloads for development
 ```
