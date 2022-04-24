@@ -2,18 +2,18 @@
   <app-card>
     <template v-slot:title>Sign up</template>
     <template v-slot:body>
-      <app-form>
+      <app-form @submit="formSubmit">
         <div class="input-group">
           <label for="email">Email</label>
-          <input type="text" placeholder="example@domain.com" id="email">
+          <input type="text" placeholder="example@domain.com" id="email" v-model="email">
         </div>
         <div class="input-group">
           <label for="password">Password</label>
-          <input type="password" placeholder="***********" id="password">
+          <input type="password" placeholder="***********" id="password" v-model="password">
         </div>
         <div class="input-group">
           <label for="password_repeat">Repeat Password</label>
-          <input type="password" placeholder="***********" id="password_repeat">
+          <input type="password" placeholder="***********" id="password_repeat" v-model="passwordRepeat">
         </div>
         <button type="submit">Sign Up</button>
       </app-form>
@@ -27,7 +27,22 @@ import AppForm from "@/components/AppForm";
 
 export default {
   name: "SignUp",
-  components: {AppForm, AppCard}
+  components: {AppForm, AppCard},
+  data() {
+    return {
+      email: null,
+      password: null,
+      passwordRepeat: null
+    }
+  },
+  methods: {
+    formSubmit() {
+      const data = {email: this.email, password: this.password, password_repeat: this.passwordRepeat};
+      this.$store.dispatch('user/signUp', data).then(() => {
+        this.$router.push({name: 'index'});
+      });
+    }
+  }
 }
 </script>
 
