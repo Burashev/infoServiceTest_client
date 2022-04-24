@@ -2,6 +2,7 @@
   <div class="container">
     <router-view/>
   </div>
+  <notification-list/>
 </template>
 
 <style>
@@ -28,3 +29,9 @@ body {
   min-height: 100vh;
 }
 </style>
+<script>
+import NotificationList from "@/components/notifications/NotificationList";
+export default {
+  components: {NotificationList}
+}
+</script>
