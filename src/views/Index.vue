@@ -3,7 +3,7 @@
     <app-card>
       <template v-slot:title>Send Application</template>
       <template v-slot:body>
-        <app-form @submit="">
+        <app-form @submit="formSubmit">
           <div class="input-group">
             <label for="name">name</label>
             <input type="text" required placeholder="Name" id="name" v-model="name">
@@ -26,7 +26,7 @@
           </div>
           <div class="input-group">
             <label for="file">file</label>
-            <input type="file" required id="file">
+            <input type="file" required id="file" ref="file" @change="uploadFile">
           </div>
           <button type="submit">Send</button>
         </app-form>
@@ -87,6 +87,21 @@ export default {
   },
   computed: {
     ...mapState('user', ['applications']),
+  },
+  methods: {
+    uploadFile() {
+      this.file = this.$refs.file.files[0];
+    },
+    formSubmit() {
+      const formData = new FormData();
+      formData.append('file', this.file);
+      formData.append('name', this.name);
+      formData.append('number', this.number);
+      formData.append('company', this.company);
+      formData.append('application_name', this.application_name);
+      formData.append('message', this.message);
+      this.$store.dispatch('user/sendApplication', formData);
+    }
   }
 }
 </script>
@@ -100,6 +115,7 @@ export default {
 
 .table-wrapper {
   overflow: auto;
+  height: 480px;
 
   .table {
     width: 100%;

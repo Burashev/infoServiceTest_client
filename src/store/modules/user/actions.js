@@ -21,5 +21,10 @@ export default {
         userService.getApplications(state.userObject.token).then(resData => {
             commit('SET_USER_APPLICATIONS', resData.data);
         })
+    },
+    sendApplication({state, commit}, data) {
+        userService.sendApplication(data, state.userObject.token).then((resData) => {
+            commit('SET_USER_APPLICATIONS', [...state.applications, resData.data]);
+        })
     }
 }

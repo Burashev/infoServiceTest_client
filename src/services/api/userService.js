@@ -6,4 +6,12 @@ export default {
             'headers': {'Authorization': `Bearer ${token}`}
         })
     },
+    sendApplication(data, token) {
+        return apiClient.post('/application/create', data, {
+            'headers': {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    }
 }
