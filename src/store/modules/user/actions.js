@@ -11,7 +11,7 @@ export default {
         })
     },
     signUp({commit}, data) {
-        authService.signUp(data).then(resData => {
+        return authService.signUp(data).then(resData => {
             const userObject = resData.data;
             commit('SET_USER_OBJECT', userObject);
             localStorageService.setUserObject(userObject)

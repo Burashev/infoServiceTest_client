@@ -7,6 +7,7 @@ const routes = [
         name: 'index',
         component: () => import(/* webpackChunkName: "index" */ '../views/Index.vue'),
         meta: {
+            isAuth: true,
             isVerified: true,
         }
     },
@@ -28,11 +29,19 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-    if (to.meta.isVerified && !store.getters["user/isVerified"]) {
+    if (to.meta.isAuth && !store.getters["user/isAuthenticated"]) {
+        store.dispatch('notification/createNotification', {
+            text: 'You need to log in',
+            error: true
+        }).then();
+
+        return {name: 'signIn'}
+    } else if (to.meta.isVerified && !store.getters["user/isVerified"]) {
         store.dispatch('notification/createNotification', {
             text: 'You need verified your email',
             error: true
         }).then();
+
         return {name: 'signIn'}
     }
 })
