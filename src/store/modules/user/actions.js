@@ -1,4 +1,5 @@
 import authService from "@/services/api/authService";
+import userService from "@/services/api/userService";
 import localStorageService from "@/services/localStorageService";
 
 export default {
@@ -14,6 +15,11 @@ export default {
             const userObject = resData.data;
             commit('SET_USER_OBJECT', userObject);
             localStorageService.setUserObject(userObject)
+        })
+    },
+    getApplications({state, commit}) {
+        userService.getApplications(state.userObject.token).then(resData => {
+            commit('SET_USER_APPLICATIONS', resData.data);
         })
     }
 }
