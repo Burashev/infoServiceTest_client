@@ -1,12 +1,13 @@
 <template>
-  <form action="#">
+  <form action="#" @submit.prevent="$emit('submit')">
     <slot></slot>
   </form>
 </template>
 
 <script>
 export default {
-  name: "AppForm"
+  name: "AppForm",
+  emits: ['submit']
 }
 </script>
 

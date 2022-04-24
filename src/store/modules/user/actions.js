@@ -3,7 +3,7 @@ import localStorageService from "@/services/localStorageService";
 
 export default {
     signIn({commit}, data) {
-        authService.signIn(data).then(resData => {
+        return authService.signIn(data).then(resData => {
             const userObject = resData.data;
             commit('SET_USER_OBJECT', userObject);
             localStorageService.setUserObject(userObject)
