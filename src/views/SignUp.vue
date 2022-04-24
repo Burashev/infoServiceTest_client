@@ -16,6 +16,7 @@
           <input type="password" placeholder="***********" id="password_repeat" v-model="passwordRepeat">
         </div>
         <button type="submit">Sign Up</button>
+        <a href="#" @click.prevent="$router.push({name: 'signIn'})">Already have an account?</a>
       </app-form>
     </template>
   </app-card>

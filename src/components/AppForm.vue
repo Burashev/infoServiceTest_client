@@ -42,4 +42,9 @@ button {
     background-color: #186fde;
   }
 }
+
+a {
+  display: block;
+  margin-top: 10px;
+}
 </style>

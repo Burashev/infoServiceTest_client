@@ -12,6 +12,7 @@
           <input type="password" required placeholder="***********" id="password" v-model="password">
         </div>
         <button type="submit">Sign In</button>
+        <a href="#" @click.prevent="$router.push({name: 'signUp'})">Not registered yet?</a>
       </app-form>
     </template>
   </app-card>
